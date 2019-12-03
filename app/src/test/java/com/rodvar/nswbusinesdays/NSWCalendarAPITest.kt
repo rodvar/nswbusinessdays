@@ -56,4 +56,13 @@ class NSWCalendarAPITest {
         }
     }
 
+    @Test
+    fun testQueensBirthday() {
+        runBlocking {
+            service?.businessDays("2019-06-09", "2019-06-11") { days ->
+                assertEquals(0, days)
+            }
+        }
+    }
+
 }

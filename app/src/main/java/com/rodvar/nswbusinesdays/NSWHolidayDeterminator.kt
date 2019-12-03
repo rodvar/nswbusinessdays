@@ -11,7 +11,7 @@ import java.time.Month
 
 class NSWHolidayDeterminator : HolidaysDeterminator {
 
-    val specialHolidaysRule : List<HolidayRule> = listOf(
+    private val specialHolidaysRule : List<HolidayRule> = listOf(
         FixedDateHolidayRule("NewYear", Month.JANUARY, 1),
         MovableDateHolidayRule("AustraliaDay", 1, 26),
         OcurrenceDateHolidayRule("QueensBirth", 2, DayOfWeek.MONDAY, Month.JUNE)
