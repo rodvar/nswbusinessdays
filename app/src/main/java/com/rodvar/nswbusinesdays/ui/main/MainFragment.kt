@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -26,7 +25,7 @@ class MainFragment : Fragment() {
         fun newInstance() = MainFragment()
     }
 
-    private val service : NSWCalendarAPI = NSWCalendarAPI(NSWHolidayDeterminator())
+    private val service : NSWCalendarAPI = NSWCalendarAPI(NSWHolidayDeterminator()) // should be injected to make this fragment testable
 
     private lateinit var viewModel: MainViewModel
 
