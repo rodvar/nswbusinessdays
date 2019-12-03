@@ -6,7 +6,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
 
-class NSWHolidaysTest {
+class NSWCalendarAPITest {
 
     private var service : NSWCalendarAPI? = null
 
@@ -34,6 +34,24 @@ class NSWHolidaysTest {
         runBlocking {
             service?.businessDays("2014-08-13", "2014-08-21") { days ->
                 assertEquals(5, days)
+            }
+        }
+    }
+
+    @Test
+    fun testNewYear() {
+        runBlocking {
+            service?.businessDays("2019-12-31", "2020-01-02") { days ->
+                assertEquals(0, days)
+            }
+        }
+    }
+
+    @Test
+    fun testAustraliaDayMoved() {
+        runBlocking {
+            service?.businessDays("2020-01-26", "2020-01-28") { days ->
+                assertEquals(0, days)
             }
         }
     }
