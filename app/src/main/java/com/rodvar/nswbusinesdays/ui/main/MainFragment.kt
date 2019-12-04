@@ -21,13 +21,11 @@ import kotlinx.android.synthetic.main.main_fragment.*
 import java.util.*
 
 
-class MainFragment : Fragment() {
+class MainFragment(private val service : NSWCalendarAPI) : Fragment() {
 
     companion object {
-        fun newInstance() = MainFragment()
+        fun newInstance(service: NSWCalendarAPI) = MainFragment(service)
     }
-
-    private val service : NSWCalendarAPI = NSWCalendarAPI(NSWHolidayDeterminator()) // should be injected to make this fragment testable
 
     private lateinit var viewModel: MainViewModel
 

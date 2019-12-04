@@ -65,4 +65,13 @@ class NSWCalendarAPITest {
         }
     }
 
+    @Test
+    fun textXmas() {
+        runBlocking {
+            service?.businessDays("2019-12-19", "2019-12-31") { days ->
+                assertEquals(5, days)
+            }
+        }
+    }
+
 }
