@@ -4,10 +4,12 @@ import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -45,10 +47,19 @@ class MainFragment : Fragment() {
             this.showDatePicker(this.dateToValue)
         }
         this.button.setOnClickListener {
-            this.service.businessDays(this.dateFromValue.text.toString(), this.dateToValue.text.toString()) {
-                this.result.text = it.toString()
+            try {
+                this.service.businessDays(this.dateFromValue.text.toString(), this.dateToValue.text.toString()) {
+                    this.result.text = it.toString()
+                }
+            } catch (e : Exception) {
+                Log.e(this.javaClass.simpleName, "Failed to calculate business days: ",e)
+                toast(e.localizedMessage)
             }
         }
+    }
+
+    private fun toast(msg: String?) {
+        Toast.makeText(this.context, msg, Toast.LENGTH_LONG).show()
     }
 
     private fun showDatePicker(v: TextView) {
